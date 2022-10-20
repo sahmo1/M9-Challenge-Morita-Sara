@@ -15,10 +15,22 @@ public class CustomerController {
     @Autowired
     CustomerRepository customerRepository;
 
+    @GetMapping("/customer/{id}")
+    public Customer getCustomerById(@PathVariable Integer id) {
+        Optional<Customer> returnVal = customerRepository.findById(id);
+        if (returnVal.isPresent()) {
+            return returnVal.get();
+        } else {
+            return null;
+        }
+    }
+
+
     /* Create a new customer record */
     @PostMapping(value = "/customer")
     @ResponseStatus(HttpStatus.CREATED)
     public Customer addCustomer(@RequestBody Customer customer) {
+
         return customerRepository.save(customer);
     }
 
@@ -26,6 +38,7 @@ public class CustomerController {
     @PostMapping(value = "/customer/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Customer updateCustomer(@RequestBody Customer customer) {
+
         return customerRepository.save(customer);
     }
 
@@ -33,6 +46,7 @@ public class CustomerController {
     @DeleteMapping(value = "/customer/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCustomer(@PathVariable int id) {
+
         customerRepository.deleteById(id);
     }
 
