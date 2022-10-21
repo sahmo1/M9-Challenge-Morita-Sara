@@ -31,7 +31,7 @@ public class Customer implements Serializable{
     private Integer postalCode;
     private String country;
 
-    Customer() {}
+    public Customer() {}
 
     public Integer getId() {
         return id;
