@@ -128,4 +128,47 @@ public class Customer implements Serializable{
     public void setCountry(String country) {
         this.country = country;
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, email, company, phone, address1, address2, city, state, postalCode, country);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Customer customer = (Customer) o;
+        return phone == customer.phone &&
+                postalCode == customer.postalCode
+                && Objects.equals(id, customer.id)
+                && Objects.equals(firstName, customer.firstName)
+                && Objects.equals(lastName, customer.lastName)
+                && Objects.equals(email, customer.email)
+                && Objects.equals(company, customer.company)
+                && Objects.equals(address1, customer.address1)
+                && Objects.equals(address2, customer.address2)
+                && Objects.equals(city, customer.city)
+                && Objects.equals(state, customer.state)
+                && Objects.equals(country, customer.country);
+    }
+
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id= " + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", company='" + company + '\'' +
+                ", phone=" + phone +
+                ", address1='" + address1 + '\'' +
+                ", address2='" + address2 + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", postalCode=" + postalCode +
+                ", country='" + country + '\'' +
+                '}';
+    }
 }
